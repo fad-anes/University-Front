@@ -21,22 +21,25 @@
                   <p class="text-center small">Entrez vos informations pour créer un compte</p>
                 </div>
 
-                <form class="row g-3 needs-validation" novalidate>
+                <form class="row g-3 needs-validation" [formGroup]="signinForm">
                   <div class="col-12">
-                    <label for="yourEmail" class="form-label">Your Email</label>
-                    <input type="email" name="email" class="form-control" id="yourEmail" required>
-                    <div class="invalid-feedback">Please enter a valid Email adddress!</div>
+                    <label for="yourEmail" class="form-label">E-mail</label>
+                    <input type="email" name="email" class="form-control" id="yourEmail" formControlName="email" placeholder="exemple@test.com">
                   </div>
 
                   <div class="col-12">
-                    <label for="yourPassword" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" id="yourPassword" required>
-                    <div class="invalid-feedback">Please enter your password!</div>
+                    <label for="yourPassword" class="form-label">Mot De passe</label>
+                    <input type="password" name="password" class="form-control"  id="yourPassword" formControlName="password" placeholder="*************">
                   </div>
 
-                  
                   <div class="col-12">
-                    <button class="btn btn-primary w-100" type="submit">Créer</button>
+                    <label for="names" class="form-label">Nom de l'université</label>
+                    <select formControlName="name" class="form-select" aria-label="Default select example">
+                      <option *ngFor="let university of names" [value]="university">{{ university }}</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <button class="btn btn-primary w-100" type="submit"(click) = onSubmit(secondDialog)>Créer</button>
                   </div>
                   <div class="col-12">
                     <p class="small mb-0">Vous avez déjà un compte? <a href="/login">Se Connecter</a></p>
@@ -61,3 +64,14 @@
     </section>
 
   </div>
+  <ng-template #secondDialog >
+    <div class="signin-popup">
+      <div class="signin-popup-content" >
+        <h2 matDialogTitle style="color: #007bff; font-size: 24px;">{{ message }} </h2>
+      </div>
+    </div>
+</ng-template>
+
+<div *ngIf="isLoading ">
+  <app-loader></app-loader>
+</div>

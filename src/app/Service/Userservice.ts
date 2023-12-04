@@ -25,6 +25,7 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
                 const token = response.token;
                     if (token) {
                         sessionStorage.setItem('currentUser', token);
+                        sessionStorage.setItem('email', email);
                         sessionStorage.setItem('password', password);
                         sessionStorage.setItem('role', response.role);
                        
@@ -38,13 +39,35 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
         this.token = window.sessionStorage.getItem('currentUser')
        return this.token;
     }
-
-    register(user: user): Observable<any> {
-        const url = 'http://localhost:8000/User/register'; 
+   
+    register(user: user,nom:string): Observable<any> {
+        const url = `http://localhost:8000/User/register/${nom}`; 
         let jwt = this.getToken();
         jwt = "Bearer " + jwt;
         let httpHeaders = new HttpHeaders({"Authorization": jwt})
         return this.http.post<any>(url, user, { headers: httpHeaders });
-      }
+    }
 
+    namesofuniversity(): Observable<any[]>{
+        let url ='http://localhost:8000/names'; 
+        return this.http.get<any>(url);}
+        logout() {
+            this.loggedUser = undefined!;
+            this.roles = undefined!;
+            this.token= undefined!;
+            window.sessionStorage.removeItem('currentUser');
+            window.sessionStorage.removeItem('password');
+            window.sessionStorage.removeItem('role');
+            window.sessionStorage.removeItem('email');
+            this.router.navigate(['/Home']);
+        
+        }
+
+        rechercherParEmail(email: string):Observable< user> {
+            const url = `http://localhost:8000/User/getUser/${email}`;
+            let jwt = this.getToken();
+            jwt = "Bearer "+jwt;
+            let httpHeaders = new HttpHeaders({"Authorization":jwt})
+            return this.http.get<user>(url,{headers:httpHeaders});
+            }
   }

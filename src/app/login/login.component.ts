@@ -2,7 +2,6 @@ import { Component, TemplateRef, ViewChild  } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {user} from '../Model/user';
 import {Userservice} from '../Service/Userservice';
 @Component({
   selector: 'app-login',
@@ -14,6 +13,8 @@ export class LoginComponent {
   email!: string;
   password!: string;
   signinForm: FormGroup;
+  isLoading: boolean = false;
+  role!:any;
 
   @ViewChild('secondDialog', {static: true}) secondDialog!: TemplateRef<any>;
   constructor(private Userservice: Userservice, private router: Router,
@@ -39,24 +40,33 @@ export class LoginComponent {
 
       }, 4000); 
       return;
+    } if (!email.includes('@') || !email.includes('.')) {
+      this.message = " L'adresse e-mail n'est pas valide.";
+      this.dialog.open(templateRef);
+      setTimeout(() => {
+        this.dialog.closeAll();
+      }, 3000); 
+      return;
     }
+    this.isLoading = true;
       this.Userservice.login(email,password).subscribe((data) => {
-        
-     
+       
         if(data){
-        
-        this.message = "Votre signin est vrai";
-  
-        this.dialog.open(templateRef);
-        setTimeout(() => {
-          this.dialog.closeAll();
-        }, 4000);
-        return;}
+          this.isLoading = false;
+          this.role =window.sessionStorage.getItem('email');
+          if (data.role=="ADMIN"||data.role=="SUPERADMIN"){
+            this.router.navigate(['/Admin']);
+    
+          }
+          else {
+            this.router.navigate(['/etudiant']);
+          }
+        }
   
   
       },
         error => {
-          console.log(error)
+          this.isLoading = false;
           if(error.status==404){
             this.message = "Il n'y a pas de compte avec cet email";
   
