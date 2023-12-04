@@ -15,6 +15,8 @@ import { AdminComponent } from './admin/admin.component';
 import { MenuadminComponent } from './menuadmin/menuadmin.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { LoaderComponent } from './loader/loader.component';
+import { EtudiantComponent } from './etudiant/etudiant.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { RegisterComponent } from './register/register.component';
     AdminComponent,
     MenuadminComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoaderComponent,
+    EtudiantComponent
   ],
   schemas: [ NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA ],
   imports: [
