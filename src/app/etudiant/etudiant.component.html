@@ -36,6 +36,8 @@
                         <div class="box">
                         <div class="icon"><i class="bi bi-card-heading" style="color: #007bff;"></i></div>
                         Cin:<h4 class="title">{{cin}}</h4>
+                        <div class="icon"><i class="bi bi-calendar-date" style="color: #007bff;"></i></div>
+                            Date de naissance:<h4 class="title">{{ date | date:'dd/MM/yyyy' }}</h4>
                         </div>
                     </div>  
              </div>      
@@ -74,3 +76,6 @@
       </section><!-- End Portfolio Section -->
 </main>
 <app-footer-front></app-footer-front>
+<div *ngIf="isLoading ">
+  <app-loader></app-loader>
+</div>

@@ -17,6 +17,11 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LoaderComponent } from './loader/loader.component';
 import { EtudiantComponent } from './etudiant/etudiant.component';
+import { ExpirationDialogComponent } from './expiration-dialog/expiration-dialog.component';
+import { AuthGuard } from './Service/AuthGuard ';
+import { UniversityComponent } from './university/university.component';
+import { AjoutuniversityComponent } from './ajoutuniversity/ajoutuniversity.component';
+import { ModifieruniversityComponent } from './modifieruniversity/modifieruniversity.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,11 @@ import { EtudiantComponent } from './etudiant/etudiant.component';
     LoginComponent,
     RegisterComponent,
     LoaderComponent,
-    EtudiantComponent
+    EtudiantComponent,
+    ExpirationDialogComponent,
+    UniversityComponent,
+    AjoutuniversityComponent,
+    ModifieruniversityComponent
   ],
   schemas: [ NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA ],
   imports: [
@@ -43,7 +52,7 @@ import { EtudiantComponent } from './etudiant/etudiant.component';
     BrowserAnimationsModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

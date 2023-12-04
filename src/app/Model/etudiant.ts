@@ -1,8 +1,9 @@
 export class etudiant{
-    id!:number;
+    idetudiant!:number;
     nom!: string;
     prenom!: string;
-    cin!: string;
+    cin!: number;
     ecole!: string;
+    datenaissance!:Date;
    
 }

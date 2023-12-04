@@ -12,10 +12,11 @@ export class EtudiantComponent implements OnInit {
   email!: string;
   nom!: string;
   prenom!: string;
-  date!: string;
   nomuniversity!: string;
-  cin!: string;
+  cin!: number;
   token!: any;
+  date!:Date;
+  isLoading: boolean = true;
   constructor(private Userservice: Userservice){}
   ngOnInit(): void {
    
@@ -32,6 +33,8 @@ export class EtudiantComponent implements OnInit {
         this.prenom = us.etudiant.prenom;
         this.cin = us.etudiant.cin;
         this.nomuniversity = us.etudiant.ecole;
+        this.date=us.etudiant.datenaissance;
+        this.isLoading=false;
       }
     });
   }
