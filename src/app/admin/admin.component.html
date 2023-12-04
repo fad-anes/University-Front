@@ -23,24 +23,57 @@
                   <thead>
                     <tr>
                       <th>
-                        <b>N</b>ame
+                        E-mail
                       </th>
-                      <th>Ext.</th>
-                      <th>City</th>
-                      <th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
-                      <th>Completion</th>
+                      <th>university</th>
+                      <th>Statu</th>
+                      <th>Supprimer</th>
+                      <th>Affecter</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Unity Pugh</td>
-                      <td>9958</td>
-                      <td>Curicó</td>
-                      <td>2005/02/11</td>
-                      <td>37%</td>
-                    </tr>
+                    <ng-container *ngIf="users?.length===0; else CurrentPageItems">
+                      <tr>
+                          <td colspan="4" style="padding-left: 350px; color:  #b7b5b5;">Vous n'avez pas d'utilisateur pour le moment, veuillez en ajouter</td>
+                      </tr>
+                  </ng-container>
+                    <ng-template #CurrentPageItems>
+                      <tr *ngFor="let item of getCurrentPageItems()">
+                        <td class="border-bottom-0">
+                          <p >{{item.User.email}}</p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <div class="d-flex align-items-center gap-2">
+                            <span>{{ item.User.university===null ? 'Non accordé à une université':  item.User.university.nomuniverste }}</span>
+                          </div>
+                        </td>
+                        <td class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0 fs-4">{{item.User.access === false ? 'Bloqué' : 'Actif' }}</h6>
+                        </td>
+                        <td class="border-bottom-0">
+                          <button class="btn btn-secondary m-1 btn-sm btn-danger" (click)="Supprimer(item.User.id)">Supprimer</button>
+
+                        </td>
+                        <td class="border-bottom-0">
+                        </td>
+                        <td class="border-bottom-0">
+                          <a class="btn btn-secondary m-1 btn-sm"
+                              [ngClass]="{'btn-success': item.User.access === false, 'btn-danger': item.User.access !== false}"
+                              (click)="changeStatus(item.User.email)">
+                              {{ item.User.access === false ? 'Activer' : 'Bloquer' }}
+                          </a>
+                        </td>
+                      </tr>
+                    </ng-template>
+                  
                 </tbody>
             </table>
+            <div class="paginator">
+              <button [disabled]="currentPage === 1" (click)="previousPage()"><i class="bi bi-arrow-left"></i></button>
+              <span>Page {{ currentPage }} sur  {{ getTotalPages() }}</span>
+              <button [disabled]="currentPage === getTotalPages()" (click)="nextPage()"><i class="bi bi-arrow-right"></i></button>
+          </div>
             <!-- End Table with stripped rows -->
 
           </div>
