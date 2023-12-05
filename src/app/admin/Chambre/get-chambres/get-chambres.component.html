@@ -1,0 +1,61 @@
+<app-header-back></app-header-back>
+<app-menuadmin></app-menuadmin>
+
+<main id="main" class="main">
+  <div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <button data-inline="true" (click)="refresh()" type="button" class="refresh-button">
+            <i class="material-icons">refresh</i>
+          </button>
+          <div class="card">
+            <div class="card-header card-header-danger">
+              <button mat-raised-button [routerLink]="['add']" type="button" class="add-button" style="margin-right: 20px;">
+                <i class="material-icons">add</i>
+              </button>
+              <mat-form-field>
+                <mat-label>Select a Bloc</mat-label>
+                <mat-select [(ngModel)]="selectedBloc">
+                  <mat-option *ngFor="let bloc of blocs" [value]="bloc.nombloc">{{ bloc.nombloc }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <button mat-raised-button color="primary" (click)="filterChambresByBloc()">Filter Chambres</button>
+              <h4 class="card-title">Chambre</h4>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4" *ngFor="let c of chambres">
+                  <div class="card bloc-card">
+                    <img [src]="getImageUrlForType(c.typec)" alt="Placeholder Image" class="card-img-top" />
+                    <div class="card-body">
+                      <h5 class="card-title">{{ c.numeroChambre }}</h5>
+                      <p class="card-text">Type: {{ c.typec }}</p>
+                      <div class="action-buttons">
+                        <button [routerLink]="['update/'+c.idchambre]" type="button" class="btn btn-info">Modifier</button>
+                        <button (click)="Supprimer(c.idchambre)" class="btn btn-danger">Supprimer</button>
+                        <button (click)="affecterChambresABloc(c)" class="btn btn-success">Affecter à Bloc</button>
+                        
+                        <mat-form-field>
+                          <mat-label>Sélectionnez le bloc</mat-label>
+                          <mat-select [(ngModel)]="selectedBloc">
+                            <mat-option *ngFor="let bloc of blocs" [value]="bloc.nombloc">{{ bloc.nombloc }}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      
+  <p *ngIf="c.affectedBloc">Affecté à Bloc: {{ c.affectedBloc }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-footer-back></app-footer-back>
