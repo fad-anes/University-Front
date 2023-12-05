@@ -1,0 +1,86 @@
+<app-header-back></app-header-back>
+<app-menuadmin></app-menuadmin>
+<main id="mainn" class="main">
+    <div class="pagetitle">
+        <h1>Inventaire des Foyers</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Admin">Acceuil</a></li>
+            <li class="breadcrumb-item">Foyers</li>
+            
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+  
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+  
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Foyers</h5>
+                <table class="table datatable">
+                  <thead>
+                    <tr>
+                      <th>
+                        Nom
+                      </th>
+                      <th>Capaciter</th>
+                      <th>Archived</th>
+                      <th>Modifier</th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container *ngIf="foyers?.length===0 ||foyers===undefined; else CurrentPageItems">
+                      <tr>
+                          <td colspan="6" style="padding-left: 350px; color:  #b7b5b5;">Vous n'avez pas des foyers pour le moment, veuillez en ajouter</td>
+                      </tr>
+                  </ng-container>
+                    <ng-template #CurrentPageItems>
+                      <tr *ngFor="let item of foyers">
+                        <td class="border-bottom-0">
+                          <p >{{item.nomfoyer}}</p>
+                        </td>
+                        <td class="border-bottom-0">
+                            <p >{{item.capacitefoyer}}</p>
+                          </td>
+                          <td class="border-bottom-0">
+                            <div class="d-flex align-items-center gap-2">
+                              <span>{{ item.archived===false ? 'actif': 'Arichiver' }}</span>
+                            </div>
+                          </td>
+                          
+                          <td class="border-bottom-0">
+                            <button class="btn btn-secondary m-1" style="background-color: #007bff;"(click)="goToModifier(item)">Modifer</button>
+                          </td>
+                       
+                        <td class="border-bottom-0">
+                           
+                            <a class="btn btn-secondary m-1 btn-sm"
+                            [ngClass]="{'btn-success': item.archived !== false, 'btn-danger': item.archived === false}"
+                            (click)="archive(item.idfoyer)">
+                            {{ item.archived === false ? 'Arichiver' : 'Activer' }}
+                        </a>
+                        </td>
+                       
+                      </tr>
+                    </ng-template>
+                  
+                </tbody>
+            </table>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <center><button class="btn btn-secondary m-1 btn-sm" style="background-color: #007bff;"(click)="goToAjout()">Ajouter</button></center>
+</main>
+<app-footer-back></app-footer-back>
+
+<div *ngIf="isLoading ">
+  <app-loader></app-loader>
+</div>
