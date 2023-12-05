@@ -1,0 +1,19 @@
+/* Your component's CSS file */
+
+.comparison-container {
+    margin: 15px 0;
+  }
+  
+  .example-card {
+    max-width: 400px;
+    margin: 15px;
+  }
+  
+  .chambre-type {
+    font-weight: bold;
+  }
+  
+  .bloc-name {
+    color: #555;
+  }
+  

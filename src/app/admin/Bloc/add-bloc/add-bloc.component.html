@@ -1,0 +1,29 @@
+<app-header-back></app-header-back>
+<app-menuadmin></app-menuadmin>
+<main id="main" class="main">
+    <form [formGroup]="BlocForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label class="form-label">
+        Nom Bloc:
+      </label>
+      <input class="form-control" type="text" formControlName="nombloc">
+      <div class="alert alert-danger" *ngIf="BlocForm.get('nombloc')!.invalid && (BlocForm.get('nombloc')!.touched || BlocForm.get('nombloc')!.dirty)">
+        <div *ngIf="BlocForm.get('nombloc')!.errors!['required']">Le nom du bloc est requis.</div>
+        <div *ngIf="BlocForm.get('nombloc')!.errors!['minlength']">Le nom du bloc doit contenir au moins 1 caractère.</div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">
+        Capacité Bloc:
+      </label>
+      <input class="form-control" type="number" formControlName="capacitebloc" min="1">
+      <div class="alert alert-danger" *ngIf="BlocForm.get('capacitebloc')!.invalid && (BlocForm.get('capacitebloc')!.touched || BlocForm.get('capacitebloc')!.dirty)">
+        <div *ngIf="BlocForm.get('capacitebloc')!.errors!['required']">La capacité du bloc est requise.</div>
+        <div *ngIf="BlocForm.get('capacitebloc')!.errors!['min']">La capacité du bloc doit être d'au moins 1.</div>
+      </div>
+    </div>
+    <p>Complétez le formulaire pour activer le bouton.</p>
+    <button type="submit" [disabled]="!BlocForm.valid">Soumettre</button>
+  </form>
+<app-footer-back></app-footer-back>
+  
