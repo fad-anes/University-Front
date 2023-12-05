@@ -22,6 +22,13 @@ import { AuthGuard } from './Service/AuthGuard ';
 import { UniversityComponent } from './university/university.component';
 import { AjoutuniversityComponent } from './ajoutuniversity/ajoutuniversity.component';
 import { ModifieruniversityComponent } from './modifieruniversity/modifieruniversity.component';
+import { FoyerComponent } from './foyer/foyer.component';
+import { AjoutfoyerComponent } from './ajoutfoyer/ajoutfoyer.component';
+import { ModifierfoyerComponent } from './modifierfoyer/modifierfoyer.component';
+import { AffecterUniversityToFoyerComponent } from './affecter-university-to-foyer/affecter-university-to-foyer.component';
+import { AffecteradminaunivesityComponent } from './affecteradminaunivesity/affecteradminaunivesity.component';
+import { AjoutetudiantComponent } from './ajoutetudiant/ajoutetudiant.component';
+import { ModifieradminComponent } from './modifieradmin/modifieradmin.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +47,14 @@ import { ModifieruniversityComponent } from './modifieruniversity/modifieruniver
     ExpirationDialogComponent,
     UniversityComponent,
     AjoutuniversityComponent,
-    ModifieruniversityComponent
+    ModifieruniversityComponent,
+    FoyerComponent,
+    AjoutfoyerComponent,
+    ModifierfoyerComponent,
+    AffecterUniversityToFoyerComponent,
+    AffecteradminaunivesityComponent,
+    AjoutetudiantComponent,
+    ModifieradminComponent
   ],
   schemas: [ NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA ],
   imports: [

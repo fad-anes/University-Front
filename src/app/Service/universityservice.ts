@@ -36,8 +36,8 @@ Deleteuniversity(id: number): Observable<any>{
     let jwt = window.sessionStorage.getItem('currentUser');
     jwt = "Bearer " + jwt;
     let httpHeaders = new HttpHeaders({"Authorization": jwt})
-    return this.http.delete(url,{ headers:httpHeaders });
-    }
+    return this.http.delete<any>(url, { headers: httpHeaders });
+}
 oneuniversity(id: number):Observable<university> {
     const url = `http://localhost:8000/University/OneUniversty/${id}`;
     let jwt = window.sessionStorage.getItem('currentUser');
