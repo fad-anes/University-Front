@@ -36,7 +36,7 @@ archiver(id: number): Observable<any>{
     let jwt = window.sessionStorage.getItem('currentUser');
     jwt = "Bearer " + jwt;
     let httpHeaders = new HttpHeaders({"Authorization": jwt})
-    return this.http.post(url,null,{ headers:httpHeaders });
+    return this.http.put(url,null,{ headers:httpHeaders });
     }
 oneuniversity(id: number):Observable<foyer> {
     const url = `http://localhost:8000/Foyer/OneFoyer/${id}`;

@@ -2,11 +2,11 @@
 <app-menuadmin></app-menuadmin>
 <main id="mainn" class="main">
     <div class="pagetitle">
-        <h1>Inventaire des universities</h1>
+        <h1>Inventaire des Foyers</h1>
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/Admin">Acceuil</a></li>
-            <li class="breadcrumb-item">universities</li>
+            <li class="breadcrumb-item">Foyers</li>
             
           </ol>
         </nav>
@@ -18,50 +18,51 @@
   
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">universities</h5>
+                <h5 class="card-title">Foyers</h5>
                 <table class="table datatable">
                   <thead>
                     <tr>
                       <th>
                         Nom
                       </th>
-                      <th>Adresse</th>
-                      <th>foyer</th>
-                      <th *ngIf="hasaccess">Supprimer</th>
+                      <th>Capaciter</th>
+                      <th>Archived</th>
                       <th>Modifier</th>
-                      <th>Affecter</th>
+                      <th></th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <ng-container *ngIf="universitys?.length===0 ||universitys===undefined; else CurrentPageItems">
+                    <ng-container *ngIf="foyers?.length===0 ||foyers===undefined; else CurrentPageItems">
                       <tr>
-                          <td colspan="5" style="padding-left: 350px; color:  #b7b5b5;">Vous n'avez pas des universités pour le moment, veuillez en ajouter</td>
+                          <td colspan="6" style="padding-left: 350px; color:  #b7b5b5;">Vous n'avez pas des foyers pour le moment, veuillez en ajouter</td>
                       </tr>
                   </ng-container>
                     <ng-template #CurrentPageItems>
-                      <tr *ngFor="let item of universitys">
+                      <tr *ngFor="let item of foyers">
                         <td class="border-bottom-0">
-                          <p >{{item.nomuniverste}}</p>
+                          <p >{{item.nomfoyer}}</p>
                         </td>
                         <td class="border-bottom-0">
-                            <p >{{item.adresse}}</p>
+                            <p >{{item.capacitefoyer}}</p>
                           </td>
                           <td class="border-bottom-0">
                             <div class="d-flex align-items-center gap-2">
-                              <span>{{ item.foyer===null ? 'Non accordé à un foyer':  item.foyer.nomfoyer }}</span>
+                              <span>{{ item.archived===false ? 'actif': 'Arichiver' }}</span>
                             </div>
                           </td>
-                          <td class="border-bottom-0" *ngIf="hasaccess">
-                            <button class="btn btn-secondary m-1 btn-sm btn-danger" (click)="Delete(item.iduniverste)">Supprimer</button>
-                          </td>
+                          
                           <td class="border-bottom-0">
                             <button class="btn btn-secondary m-1" style="background-color: #007bff;"(click)="goToModifier(item)">Modifer</button>
                           </td>
                        
                         <td class="border-bottom-0">
-                          <button  *ngIf="item.foyer==undefined "class="btn btn-secondary m-1" style="background-color: #007bff;"(click)="goToAffecter(item.nomuniverste)">Affecter</button>
-                          <button  *ngIf="item.foyer!=undefined "class="btn btn-secondary m-1 btn-danger" (click)="desafecter(item.foyer.idfoyer,item.iduniverste)">Désaffecté</button>
-
+                           
+                            <a class="btn btn-secondary m-1 btn-sm"
+                            [ngClass]="{'btn-success': item.archived !== false, 'btn-danger': item.archived === false}"
+                            (click)="archive(item.idfoyer)">
+                            {{ item.archived === false ? 'Arichiver' : 'Activer' }}
+                        </a>
                         </td>
                        
                       </tr>
@@ -76,7 +77,7 @@
       </div>
     </div>
   </section>
-  <center><button class="btn btn-secondary m-1 btn-sm" style="background-color: #007bff;"(click)="goToAjout()" *ngIf="hasaccess">Ajouter</button></center>
+  <center><button class="btn btn-secondary m-1 btn-sm" style="background-color: #007bff;"(click)="goToAjout()">Ajouter</button></center>
 </main>
 <app-footer-back></app-footer-back>
 

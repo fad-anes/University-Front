@@ -1,49 +1,60 @@
 import { Component,OnInit,TemplateRef, ViewChild,Inject  } from '@angular/core';
+import {foyer} from "../Model/foyer";
+import {foyerservice} from "../Service/foyerservice";
 import {university} from "../Model/university";
 import {universityservice} from "../Service/universityservice";
 import { MatDialog,MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-modifieruniversity',
-  templateUrl: './modifieruniversity.component.html',
-  styleUrls: ['./modifieruniversity.component.css']
+  selector: 'app-affecter-university-to-foyer',
+  templateUrl: './affecter-university-to-foyer.component.html',
+  styleUrls: ['./affecter-university-to-foyer.component.css']
 })
-export class ModifieruniversityComponent implements OnInit{
-  university= new university();
-  universitys!: university[];
-  role!:any;
+export class AffecterUniversityToFoyerComponent implements OnInit{
+  foyers: any[] = [];
   isLoading:boolean=true;
   signinForm: FormGroup;
   message: string = '';
   @ViewChild('secondDialog', {static: true}) secondDialog!: TemplateRef<any>;
-  constructor(private universityservice: universityservice,private dialogRef : MatDialog ,private formBuilder: FormBuilder,@Inject(MAT_DIALOG_DATA) public data: any) { 
+  constructor(private foyerservice: foyerservice,private dialogRef : MatDialog,private universityservice :universityservice ,private formBuilder: FormBuilder,@Inject(MAT_DIALOG_DATA) public data: any) { 
     this.signinForm = this.formBuilder.group({
-      nomuniverste: ['', [Validators.required]],
-      adresse: ['', Validators.required]
+      nomfoyer: ['', [Validators.required]]
     });
   }
-  openDialogWithoutRef() {
-    this.dialogRef.open(this.secondDialog);
-  }
   ngOnInit(): void {
+   this.gettall();
    
-    if (this.data) {
       this.isLoading=false;
-      this.signinForm.patchValue({
-        nomuniverste: this.data.u.nomuniverste || '', 
-        adresse: this.data.u.adresse || ''
-      });}
+      
   }
   closePopup(){
     this.dialogRef.closeAll();
   }
+  gettall() {
+    this.foyerservice.listefoyer().subscribe(foyerss => {
+      this.isLoading = false;
+      if (foyerss && foyerss.length > 0) {
+        this.universityservice.listeUniversitys().subscribe(universitys => {
+          let filteredFoyers = [...foyerss]; // Créez une copie pour éviter de modifier la liste brute
+        
+          for (let i = 0; i < universitys.length; i++) {
+            if (universitys[i]?.foyer?.nomfoyer) {
+              filteredFoyers = filteredFoyers.filter(foyer => foyer.nomfoyer != universitys[i].foyer.nomfoyer);
+            }
+          }
+        
+          this.foyers = filteredFoyers;
+        });
+      }
+    });
+  }
+  
   onSubmit(templateRef: TemplateRef<any>) : void{
-    const nomuniverste = this.signinForm.get('nomuniverste')?.value;
-    const adresse = this.signinForm.get('adresse')?.value;
+    const nomfoyer = this.signinForm.get('nomfoyer')?.value;
    
-    if (!nomuniverste || !adresse ) {
-      this.message = "Oups ! Vous avez oublié de saisir le nom de l'univerité et/ou l'adresse!";
+    if (!nomfoyer ) {
+      this.message = "Oups ! Vous avez oublié de saisir le nom  du foyer!";
 
     this.dialogRef.open(templateRef);
     setTimeout(() => {
@@ -52,11 +63,9 @@ export class ModifieruniversityComponent implements OnInit{
     }, 4000); 
     return;
   }
-  this.university.iduniverste=this.data.u.iduniverste;
-  this.university.adresse=adresse;
-  this.university.nomuniverste=nomuniverste;
+ 
   this.isLoading = true;
-    this.universityservice.edituniversity(this.university).subscribe((data) => {
+    this.universityservice.affecter(nomfoyer,this.data.nom).subscribe((data) => {
    
     if(data){
       this.isLoading = false;
@@ -69,7 +78,7 @@ export class ModifieruniversityComponent implements OnInit{
       error => {
         this.isLoading = false;
         if(error.status==404){
-          this.message = "Il n'y a pas une université avec cette nom";
+          this.message = "foyer n'est pas disponible et/ou université n'est pas disponible ";
 
         this.dialogRef.open(templateRef);
         setTimeout(() => {
@@ -99,4 +108,5 @@ export class ModifieruniversityComponent implements OnInit{
     );
  
   }
-}
+  }
+

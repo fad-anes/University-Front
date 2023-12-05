@@ -13,7 +13,7 @@
     <div class="popup-content" >
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Modifier Une université</h5>
+                <h5 class="card-title">Affecter l'Administrateur</h5>
                 <a class="closedialog" (click)="closePopup()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
                       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -22,20 +22,16 @@
                   </a>
                 <form [formGroup]="signinForm">
                     <div class="row mb-3">
-                    <label for="inputEmail3" class="form-label">Nom de luniversité</label>
+                    <label for="inputEmail3" class="form-label">Nom du universiter</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputText" formControlName="nomuniverste">
+                        <select formControlName="nomuniversity" class="form-select" aria-label="Default select example">
+                            <option *ngFor="let university of universitys" [value]="university.iduniverste">{{ university.nomuniverste }}</option>
+                          </select>
                     </div>
                     </div>
-                    <div class="row mb-3">
-                    <label for="inputEmail3" class="form-label">Adresse</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputText"formControlName="adresse">
-                    </div>
-                    </div>
-                  
+                   
                     <div class="text-center">
-                    <button type="submit" class="btn btn-primary" (click) = onSubmit(secondDialog)>Modifer</button>
+                    <button type="submit" class="btn btn-primary" (click) = onSubmit(secondDialog)>Affecter</button>
                     </div>
                 </form>
 

@@ -80,12 +80,12 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
             
                   }
 
-                  listeNotification(): Observable<any>{
+                  listeNotification(): Observable<any[]>{
                     let jwt = window.sessionStorage.getItem('currentUser');
                     const url ='http://localhost:8000/notification';
                     let httpHeaders = new HttpHeaders()
                     .set('Authorization', 'Bearer ' + jwt);
-                    return this.http.get<any>(url,{headers:httpHeaders});
+                    return this.http.get<any[]>(url,{headers:httpHeaders});
                 
                       }
                       nombredenotification(): Observable<number>{
@@ -104,12 +104,12 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
                             return this.http.post<any>(url,user,{headers:httpHeaders});
                         
                               }
-                              giveaccess(user:user,iduser:number,iduniver:number): Observable<any>{
+                              giveaccess(iduser:number,iduniver:number): Observable<any>{
                                 let jwt = window.sessionStorage.getItem('currentUser');
                                 const url =`http://localhost:8000/User/giveaccess/${iduniver}/${iduser}`;
                                 let httpHeaders = new HttpHeaders()
                                 .set('Authorization', 'Bearer ' + jwt);
-                                return this.http.post<any>(url,user,{headers:httpHeaders});
+                                return this.http.post<any>(url,null,{headers:httpHeaders});
                             
                                   }
 
