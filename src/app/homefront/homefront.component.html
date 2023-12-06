@@ -8,7 +8,10 @@
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Acceuil</a></li>
           <li><a class="nav-link scrollto" href="#about">A propos</a></li>
-          <li><a class="nav-link scrollto" href="#">Se Connecter</a></li>
+          <li *ngIf="!islogeedin"><a class="nav-link scrollto" href="/login">Se Connecter</a></li>
+          <li *ngIf="islogeedin"><a class="nav-link scrollto" href="/etudiant">Profile</a></li>
+          <li *ngIf="islogeedin"><a class="nav-link scrollto" href="#">Mes reservations</a></li>
+          <li *ngIf="islogeedin"><a class="nav-link scrollto" (click) = logout()>Se Deconnecter</a></li>
         </ul>
       </nav>
     </div>
@@ -26,7 +29,7 @@
 
     </div>
   </section>
-  <main id="main">
+  <main >
 
     <!-- ======= About Section ======= -->
     <section id="about">

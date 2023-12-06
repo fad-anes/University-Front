@@ -1,7 +1,88 @@
 <app-header-back></app-header-back>
 <app-menuadmin></app-menuadmin>
-<main id="main" class="main">
-    <h1>heeloo</h1>
+<main id="mainn" class="main">
+    <div class="pagetitle">
+        <h1>Inventaire des Utilisateurs</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Admin">Acceuil</a></li>
+            <li class="breadcrumb-item">Utulisateurs</li>
+            
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+  
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+  
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Utulisateurs</h5>
+                <table class="table datatable">
+                  <thead>
+                    <tr>
+                      <th>
+                        E-mail
+                      </th>
+                      <th>university</th>
+                      <th>Statu</th>
+                    
+                      <th  *ngIf="hasaccess">Affecter</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container *ngIf="users?.length===0; else CurrentPageItems">
+                      <tr>
+                          <td colspan="4" style="padding-left: 350px; color:  #b7b5b5;">Vous n'avez pas d'utilisateur pour le moment, veuillez en ajouter</td>
+                      </tr>
+                  </ng-container>
+                    <ng-template #CurrentPageItems>
+                      <tr *ngFor="let item of getCurrentPageItems()">
+                        <td class="border-bottom-0">
+                          <p >{{item.User.email}}</p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <div class="d-flex align-items-center gap-2">
+                            <span>{{ item.User.university===null ? 'Non accordé à une université':  item.User.university.nomuniverste }}</span>
+                          </div>
+                        </td>
+                        <td class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0 fs-4">{{item.User.access === false ? 'Bloqué' : 'Actif' }}</h6>
+                        </td>
+                       
+                        <td class="border-bottom-0" *ngIf="hasaccess">
+                          <button class="btn btn-secondary m-1 btn-sm" (click)="goToAffecter(item.User.id)" style="background-color: #007bff;">Affceter</button>
+
+                        </td>
+                        <td class="border-bottom-0">
+                          <a class="btn btn-secondary m-1 btn-sm"
+                              [ngClass]="{'btn-success': item.User.access === false, 'btn-danger': item.User.access !== false}"
+                              (click)="changeStatus(item.User.email)">
+                              {{ item.User.access === false ? 'Activer' : 'Bloquer' }}
+                          </a>
+                        </td>
+                      </tr>
+                    </ng-template>
+                  
+                </tbody>
+            </table>
+            <div class="paginator">
+              <button [disabled]="currentPage === 1" (click)="previousPage()"><i class="bi bi-arrow-left"></i></button>
+              <span>Page {{ currentPage }} sur  {{ getTotalPages() }}</span>
+              <button [disabled]="currentPage === getTotalPages()" (click)="nextPage()"><i class="bi bi-arrow-right"></i></button>
+          </div>
+            <!-- End Table with stripped rows -->
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <center><button class="btn btn-secondary m-1 btn-sm" style="background-color: #007bff;"(click)="gotoetudiantuser()">Affecter</button></center>
+
 </main>
 
 <app-footer-back></app-footer-back>
