@@ -20,35 +20,55 @@ export class BlocService {
   }
 
   public retrieveAllBlocs(): Observable<Bloc[]> {
-    return this.http.get<Bloc[]>(this.BlocAdminUrl+"retrieve-all-blocs");
+    let jwt = window.sessionStorage.getItem('currentUser');
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({"Authorization": jwt})
+    return this.http.get<Bloc[]>(this.BlocAdminUrl+"retrieve-all-blocs",{ headers:httpHeaders });
   }
 
   public save( bloc: Bloc): Observable<Bloc> {
-    
-    return this.http.post<Bloc>(this.BlocAdminUrl+"add-bloc", bloc,this.httpOptions);
+    let jwt = window.sessionStorage.getItem('currentUser');
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({"Authorization": jwt})
+    return this.http.post<Bloc>(this.BlocAdminUrl+"add-bloc", bloc,{ headers:httpHeaders });
   }
 
   
   updateBloc(idbloc: number, value: any): Observable<Object> {
-    return this.http.put(this.BlocAdminUrl+`update-bloc/${idbloc}`, value);
+    let jwt = window.sessionStorage.getItem('currentUser');
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({"Authorization": jwt})
+    return this.http.put(this.BlocAdminUrl+`update-bloc/${idbloc}`, value,{ headers:httpHeaders });
   }
 
   getBloc(idbloc: number): Observable<Object> {
-    return this.http.get(`${this.BlocAdminUrl}retrieve-bloc/${idbloc}`);
+    let jwt = window.sessionStorage.getItem('currentUser');
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({"Authorization": jwt})
+    return this.http.get(`${this.BlocAdminUrl}retrieve-bloc/${idbloc}`,{ headers:httpHeaders });
   }
   deleteBloc(idbloc:number):Observable<Object>{
-    return this.http.delete(this.BlocAdminUrl+`remove-bloc/${idbloc}`);
+    let jwt = window.sessionStorage.getItem('currentUser');
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({"Authorization": jwt})
+    return this.http.delete(this.BlocAdminUrl+`remove-bloc/${idbloc}`,{ headers:httpHeaders });
   }
   
   affecterChambreABloc(numeroChambre: number, nombloc: string): Observable<any> {
+    let jwt = window.sessionStorage.getItem('currentUser');
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({"Authorization": jwt})
     const url = `${this.BlocAdminUrl}affecterChambres/${numeroChambre}/${nombloc}`;
-    return this.http.put(url, {});
+    return this.http.put(url,null,{ headers:httpHeaders });
   }
 
 
   compareBlocs(): Observable<Map<string, string>> {
+    let jwt = window.sessionStorage.getItem('currentUser');
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({"Authorization": jwt})
     const url = `${this.BlocAdminUrl}compare-blocs`;
-    return this.http.get<Map<string, string>>(url);
+    return this.http.get<Map<string, string>>(url,{ headers:httpHeaders });
   }
 
  

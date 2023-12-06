@@ -30,6 +30,22 @@ import { AffecteradminaunivesityComponent } from './affecteradminaunivesity/affe
 import { AjoutetudiantComponent } from './ajoutetudiant/ajoutetudiant.component';
 import { ModifieradminComponent } from './modifieradmin/modifieradmin.component';
 
+import { AddBlocComponent } from './admin/Bloc/add-bloc/add-bloc.component';
+import { GetBlocsComponent } from './admin/Bloc/get-blocs/get-blocs.component';
+import { UpdateBlocComponent } from './admin/Bloc/update-bloc/update-bloc.component';
+import { DeleteConfirmationDialogComponent } from './admin/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { ChambreCountComponent } from './admin/Chambre/chambre-count/chambre-count.component';
+import { CompareBlocsComponent } from './admin/Bloc/compare-blocs/compare-blocs.component';
+import { AddChambreComponent } from './admin/Chambre/add-chambre/add-chambre.component';
+import { GetChambresComponent } from './admin/Chambre/get-chambres/get-chambres.component';
+import { UpdateChambreComponent } from './admin/Chambre/update-chambre/update-chambre.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +70,16 @@ import { ModifieradminComponent } from './modifieradmin/modifieradmin.component'
     AffecterUniversityToFoyerComponent,
     AffecteradminaunivesityComponent,
     AjoutetudiantComponent,
-    ModifieradminComponent
+    ModifieradminComponent,
+    AddBlocComponent,
+    GetBlocsComponent,
+    UpdateBlocComponent,
+    DeleteConfirmationDialogComponent,
+    ChambreCountComponent,
+    CompareBlocsComponent,
+    AddChambreComponent,
+    GetChambresComponent,
+    UpdateChambreComponent
   ],
   schemas: [ NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA ],
   imports: [
@@ -64,7 +89,12 @@ import { ModifieradminComponent } from './modifieradmin/modifieradmin.component'
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatPaginatorModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

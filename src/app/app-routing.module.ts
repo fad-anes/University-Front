@@ -16,6 +16,10 @@ import { AffecterUniversityToFoyerComponent } from './affecter-university-to-foy
 import { AffecteradminaunivesityComponent } from './affecteradminaunivesity/affecteradminaunivesity.component';
 import { AjoutetudiantComponent } from './ajoutetudiant/ajoutetudiant.component';
 import { ModifieradminComponent } from './modifieradmin/modifieradmin.component';
+
+import { ChambreCountComponent } from './admin/Chambre/chambre-count/chambre-count.component';
+import { CompareBlocsComponent } from './admin/Bloc/compare-blocs/compare-blocs.component';
+
 const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
   { path: 'Home', component: HomefrontComponent , title:"Acceuil" },
@@ -33,6 +37,18 @@ const routes: Routes = [
   { path: 'Affecteruser', component: AffecteradminaunivesityComponent,canActivate: [AuthGuard] , title:"Affecter user" },
   { path: 'ajoutuseretud', component: AjoutetudiantComponent,canActivate: [AuthGuard] , title:"ajouter user a etudiant" },
   { path: 'modifieruser', component: ModifieradminComponent,canActivate: [AuthGuard] , title:"Modifer user" },
+  {
+    path: 'Bloc',canActivate: [AuthGuard],
+    loadChildren: () => import('./admin/Bloc/bloc.module').then((m) => m.BlocModule),
+    data: { title: 'Bloc' }
+  },
+  {
+    path: 'Chambre',canActivate: [AuthGuard],
+    loadChildren: () => import('./admin/Chambre/chambre.module').then((m) => m.ChambreModule),
+    data: { title: 'Chambre' }
+  },
+  { path: 'chambre-count', component: ChambreCountComponent,canActivate: [AuthGuard], data: { title: 'Chambre Count' }},
+  { path: 'compare-blocs', component: CompareBlocsComponent,canActivate: [AuthGuard], data: { title: 'Compare Blocs' }}
 ];
 
 @NgModule({
