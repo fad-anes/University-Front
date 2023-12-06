@@ -1,0 +1,45 @@
+<app-header-back></app-header-back>
+<app-menuadmin></app-menuadmin>
+
+<main id="main" class="main">
+  <div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <button data-inline="true" (click)="refresh()" type="button" class="refresh-button">
+            <i class="material-icons">refresh</i>
+          </button>
+          <div class="card">
+            <div class="card-header card-header-danger">
+              <button mat-raised-button [routerLink]="['add']" type="button" class="add-button">
+                <i class="material-icons">add</i>
+              </button>
+              <h4 class="card-title">Blocs</h4>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4" *ngFor="let b of blocs">
+                  <div class="card bloc-card">
+                    <img src="../../../../assets/img/Cat03.jpg" alt="Placeholder Image" class="card-img-top" />
+                    <div class="card-body">
+                      <h5 class="card-title">{{ b.nombloc }}</h5>
+                      <p class="card-text">ID: {{ b.idbloc }}</p>
+                      <p class="card-text">Capacité: {{ b.capacitebloc }}</p>
+                      <div class="action-buttons">
+                        <button [routerLink]="['update/'+b.idbloc]" type="button" class="btn btn-info">Modifier</button>
+                        <button (click)="Supprimer(b.idbloc)" class="btn btn-danger">Supprimer</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-footer-back></app-footer-back>

@@ -1,0 +1,16 @@
+<app-header-back></app-header-back>
+<app-menuadmin></app-menuadmin>
+<main id="main" class="main">
+<div *ngIf="blocStatistics" class="comparison-container">
+    <h3>Comparaison des Blocs</h3>
+  
+    <div *ngFor="let entry of blocStatistics | keyvalue" class="comparison-entry">
+      <mat-card class="example-card">
+        <mat-card-content>
+          <p class="chambre-type">Maximum Chambre {{ entry.key }}:</p>
+          <p class="bloc-name">Nom du Bloc: {{ entry.value }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</main>

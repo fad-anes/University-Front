@@ -1,0 +1,32 @@
+<app-header-back></app-header-back>
+<app-menuadmin></app-menuadmin>
+<main id="main" class="main">
+<form [formGroup]="ChambreForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label class="form-label">
+        Numero Chambre :
+      </label>
+      <input class="form-control" type="number" formControlName="numeroChambre">
+      <div class="alert alert-danger" *ngIf="ChambreForm.get('numeroChambre')!.invalid && (ChambreForm.get('numeroChambre')!.touched || ChambreForm.get('numeroChambre')!.dirty)">
+        <div *ngIf="ChambreForm.get('numeroChambre')!.errors!['required']">Le numero du chambre est requis.</div>
+        <div *ngIf="ChambreForm.get('numeroChambre')!.errors!['minlength']">Le numero du chambre doit contenir au moins 1 chiffre.</div>
+      </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">
+            Type Chambre:
+          </label>
+          <select class="form-control" formControlName="typec">
+            <option [value]="null" disabled selected>Select Type</option>
+            <option *ngFor="let type of chambreTypes" [value]="type">{{ type }}</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="ChambreForm.get('typec')!.invalid && (ChambreForm.get('typec')!.touched || ChambreForm.get('typec')!.dirty)">
+            <div *ngIf="ChambreForm.get('typec')!.errors!['required']">Le type du chambre est requise.</div>
+            <div *ngIf="ChambreForm.get('typec')!.errors!['min']">Le type du chambre doit être d'au moins 1.</div>
+          </div>  
+    </div>
+    <p>Complétez le formulaire pour activer le bouton.</p>
+    <button type="submit" [disabled]="!ChambreForm.valid">Soumettre</button>
+  </form>
+  <app-footer-back></app-footer-back>
+  
