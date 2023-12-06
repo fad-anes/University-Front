@@ -1,0 +1,81 @@
+<app-header-front></app-header-front>
+<main id="main">
+    <section id="team">
+       
+    </section>
+    <section id="portfolio" class="clearfix">
+        <div class="container" data-aos="fade-up">
+  
+          <header class="section-header">
+            <h3 class="section-title">Votre Profile</h3>
+          </header>
+  
+          <div class="row" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-12">
+              <ul id="portfolio-flters">
+                <li data-filter="*" class="filter-active">Informations</li>
+                <li data-filter=".filter-app">E-mail</li>
+                <li data-filter=".filter-card">université</li>
+              </ul>
+            </div>
+          </div>
+         
+          <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+  
+            <div class="col-lg-4 col-md-6 portfolio-item filter-active justify-content-center">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="box">
+                            <div class="icon"><i class="bi bi-person-square" style="color: #007bff;"></i></div>
+                            Nom:<h4 class="title">{{nom}}</h4>
+                            <div class="icon"><i class="bi bi-person-lines-fill" style="color: #007bff;"></i></div>
+                            prenom:<h4 class="title">{{prenom}}</h4> 
+                        </div>
+                    </div>    
+                    <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="box">
+                        <div class="icon"><i class="bi bi-card-heading" style="color: #007bff;"></i></div>
+                        Cin:<h4 class="title">{{cin}}</h4>
+                        <div class="icon"><i class="bi bi-calendar-date" style="color: #007bff;"></i></div>
+                            Date de naissance:<h4 class="title">{{ date | date:'dd/MM/yyyy' }}</h4>
+                        </div>
+                    </div>  
+             </div>      
+            </div>
+           
+           
+  
+            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="box">
+                            <div class="icon"><i class="bi bi-envelope" style="color: #007bff;"></i></div>
+                            E-mail:<h4 class="title">{{email}}</h4>
+                           
+                        </div>
+                    </div>    
+                   
+             </div>      
+            </div>
+  
+            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="box">
+                            <div class="icon"><i class="bi bi-buildings-fill" style="color: #007bff;"></i></div>
+                            université:<h4 class="title">{{nomuniversity}}</h4>
+                           
+                        </div>
+                    </div>    
+                   
+             </div>      
+            </div>
+          </div>
+  
+        </div>
+      </section><!-- End Portfolio Section -->
+</main>
+<app-footer-front></app-footer-front>
+<div *ngIf="isLoading ">
+  <app-loader></app-loader>
+</div>
