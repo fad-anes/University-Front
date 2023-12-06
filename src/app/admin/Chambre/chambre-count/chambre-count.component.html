@@ -1,0 +1,39 @@
+<!-- chambre-counter.component.html -->
+<app-header-back></app-header-back>
+<app-menuadmin></app-menuadmin>
+<main id="main" class="main">
+<div class="chambre-counter-container">
+    <h3>Calculate Number of Chambres</h3>
+  
+    <div class="input-container">
+      <mat-form-field>
+        <mat-label>Select Type:</mat-label>
+        <mat-select [(ngModel)]="selectedType">
+          <mat-option value="SIMPLE">Simple</mat-option>
+          <mat-option value="DOUBLE">Double</mat-option>
+          <mat-option value="TRIPLE">Triple</mat-option>
+          <!-- Add more options based on your TypeChambre enum -->
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <div class="input-container">
+      <mat-form-field>
+        <mat-label>Select Bloc:</mat-label>
+        <mat-select [(ngModel)]="selectedBlocId">
+          <mat-option *ngFor="let bloc of blocs" [value]="bloc.idbloc">{{ bloc.nombloc }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <div class="input-container">
+      <button mat-raised-button color="primary" (click)="calculateNumberOfChambres()">Calculate</button>
+    </div>
+  
+    <div *ngIf="numberOfChambres !== null" class="result-container">
+      <p>Number of chambres: {{ numberOfChambres }}</p>
+    </div>
+  </div>
+</main>
+  
+  
