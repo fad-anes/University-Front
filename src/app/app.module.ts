@@ -17,6 +17,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AjoutetudiantComponent } from './ajoutetudiant/ajoutetudiant.component';
 import { ModifetudiantComponent } from './modifetudiant/modifetudiant.component';
+import { EtudiantbackComponent } from './etudiantback/etudiantback.component';
+import { ReservationComponent } from './reservation/reservation.component';
+import { EtudiantfrontComponent } from './etudiantfront/etudiantfront.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { ModifetudiantComponent } from './modifetudiant/modifetudiant.component'
     LoginComponent,
     RegisterComponent,
     AjoutetudiantComponent,
-    ModifetudiantComponent
+    ModifetudiantComponent,
+    EtudiantbackComponent,
+    ReservationComponent,
+    EtudiantfrontComponent
   ],
   schemas: [ NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA ],
   imports: [
