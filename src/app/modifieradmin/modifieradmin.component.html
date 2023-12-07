@@ -39,6 +39,20 @@
                 </div>
               </div>
 
+              <div class="row mb-3">
+                <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Mot De passe</label>
+                <div class="col-md-8 col-lg-9">
+                  <input name="fullName" type="password" class="form-control" id="fullName"formControlName="password" >
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Confirmer Votre Mot de passe</label>
+                <div class="col-md-8 col-lg-9">
+                  <input name="fullName" type="password" class="form-control" id="fullName"formControlName="confirmpassword" >
+                </div>
+              </div>
+
               <div class="text-center">
                 <button type="submit" class="btn btn-primary" (click) = onSubmit(secondDialog)>Ok</button>
               </div>
@@ -56,6 +70,9 @@
             <div class="signin-popup">
               <div class="signin-popup-content" >
                 <h2 matDialogTitle style="color: #007bff; font-size: 24px;">{{ message }} </h2>
+                <div class="form-label">{{ message1 }}</div>
+                <div class="form-label">{{ message2 }}</div>
+                <div class="form-label">{{ secondsRemainingstring }}</div>
               </div>
             </div>
         </ng-template>

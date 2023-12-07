@@ -28,7 +28,7 @@
                       <th>university</th>
                       <th>Statu</th>
                     
-                      <th  *ngIf="hasaccess">Affecter</th>
+                      <th>Affecter</th>
                       <th></th>
                     </tr>
                   </thead>
@@ -52,9 +52,11 @@
                           <h6 class="fw-semibold mb-0 fs-4">{{item.User.access === false ? 'Bloqué' : 'Actif' }}</h6>
                         </td>
                        
-                        <td class="border-bottom-0" *ngIf="hasaccess">
-                          <button class="btn btn-secondary m-1 btn-sm" (click)="goToAffecter(item.User.id)" style="background-color: #007bff;">Affceter</button>
-
+                        <td class="border-bottom-0">
+                          <button *ngIf="item.User.university===null" class="btn btn-secondary m-1 btn-sm" (click)="goToAffecter(item.User.id)" style="background-color: #007bff;">Affceter</button>
+                          <div class="d-flex align-items-center gap-2" *ngIf="item.User.university!=null">
+                          <span>Deja Affecter</span>
+                        </div>
                         </td>
                         <td class="border-bottom-0">
                           <a class="btn btn-secondary m-1 btn-sm"

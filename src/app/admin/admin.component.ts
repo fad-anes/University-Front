@@ -19,10 +19,13 @@ export class AdminComponent implements OnInit{
   currentPage: number = 1;
   itemsPerPage: number = 4;
   hasaccess!:boolean;
+  university!: string;
+  token!:any;
   
   constructor(private Userservice: Userservice,private dialogRef : MatDialog ) { }
   ngOnInit(): void {
     this.role =window.sessionStorage.getItem('role');
+    this.token =window.sessionStorage.getItem('email');
     if(this.role=="SUPERADMIN"){this.hasaccess=true}
     else {this.hasaccess=false}
     this.getall()
@@ -37,6 +40,7 @@ export class AdminComponent implements OnInit{
       else{
         if (users && users.length > 0) {
           this.users = users.filter(user => ((user.userrole !== 'SUPERADMIN')&&(user.userrole !== 'ADMIN')));
+          this.findUserByEmail();
         }
       }
      
@@ -79,4 +83,21 @@ export class AdminComponent implements OnInit{
         const items: { User: user; }[] = this.users?.slice(startIndex, endIndex).map(user => ({ User: user }));
         return items;
       }
+
+      findUserByEmail() {
+        this.isLoading=true;
+        this.Userservice.rechercherParEmail(this.token).subscribe(us => {
+          if (us) {
+            if(us.university){
+            this.university = us.university.nomuniverste;}
+            this.isLoading=false;
+            if (this.users && this.users.length > 0) {
+              for(let i=0;i<this.users.length;i++){
+                if(this.users[i].university){
+                  this.users=  this.users.filter(user => (user.university.nomuniverste == this.university) );   
+            }}}
+          }
+        });
+      }
+     
 }

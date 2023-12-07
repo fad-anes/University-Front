@@ -44,6 +44,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { Page404Component } from './page404/page404.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     CompareBlocsComponent,
     AddChambreComponent,
     GetChambresComponent,
-    UpdateChambreComponent
+    UpdateChambreComponent,
+    Page404Component
   ],
   schemas: [ NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA ],
   imports: [

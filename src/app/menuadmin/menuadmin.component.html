@@ -31,33 +31,45 @@
           <span>Foyers</span>
         </a>
       </li><!-- End Foyer Page Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/Bloc">
-          <i class="bi bi-envelope"></i>
-          <span>Blocs</span>
+      <li class="nav-item" >
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="/Bloc">
+          <i class="bi bi-box"></i><span>Blocs</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-      </li><!-- End Blocs Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/compare-blocs">
-          <i class="bi bi-envelope"></i>
-          <span>Comparer Blocs par type de chambre</span>
-        </a>
+        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/Bloc">
+              <i class="bi bi-box"></i><span>Blocs</span>
+            </a>
+          </li>
+          <li>
+            <a href="/compare-blocs">
+              <i class="bi bi-arrow-down-up"></i><span>Comparer Blocs par type de chambre</span>
+            </a>
+          </li>
+        </ul>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/Chambre">
-          <i class="bi bi-box2-fill"></i>
-          <span>Chambres</span>
-        </a>
-      </li><!-- End Chambres Page Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/chambre-count">
-          <i class="bi bi-envelope"></i>
-          <span>ChambreCount</span>
+      <li class="nav-item" >
+        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="/Chambre">
+          <i class="bi bi-box2-fill"></i><span>Chambres</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-      </li><!-- End ChambreCount Page Nav -->
+        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/Chambre">
+              <i class="bi bi-box2-fill"></i><span>Chambres</span>
+            </a>
+          </li>
+          <li>
+            <a href="/chambre-count">
+              <i class="bi bi-arrow-down-up"></i><span>Chambre Count</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+
+      
     </ul>
 
   </aside><!-- End Sidebar-->

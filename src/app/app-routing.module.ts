@@ -37,6 +37,7 @@ const routes: Routes = [
   { path: 'Affecteruser', component: AffecteradminaunivesityComponent,canActivate: [AuthGuard] , title:"Affecter user" },
   { path: 'ajoutuseretud', component: AjoutetudiantComponent,canActivate: [AuthGuard] , title:"ajouter user a etudiant" },
   { path: 'modifieruser', component: ModifieradminComponent,canActivate: [AuthGuard] , title:"Modifer user" },
+ 
   {
     path: 'Bloc',canActivate: [AuthGuard],
     loadChildren: () => import('./admin/Bloc/bloc.module').then((m) => m.BlocModule),
