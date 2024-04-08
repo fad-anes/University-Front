@@ -22,8 +22,10 @@ export class AdminComponent implements OnInit{
   university!: string;
   token!:any;
   
+  
   constructor(private Userservice: Userservice,private dialogRef : MatDialog ) { }
   ngOnInit(): void {
+  
     this.role =window.sessionStorage.getItem('role');
     this.token =window.sessionStorage.getItem('email');
     if(this.role=="SUPERADMIN"){this.hasaccess=true}
