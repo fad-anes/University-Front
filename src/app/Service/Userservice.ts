@@ -18,7 +18,7 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
     constructor(private router: Router,private http : HttpClient  ) {}
 
     login(email: string, password: string) {
-        const url = 'http://localhost:8000/User/signin'; 
+        const url = 'http://localhost:8002/User/signin'; 
         return this.http.post<any>(url, { email, password }).pipe(
             map(response => {
               
@@ -41,7 +41,7 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
     }
    
     register(user: user,nom:string): Observable<any> {
-        const url = `http://localhost:8000/User/register/${nom}`; 
+        const url = `http://localhost:8002/User/register/${nom}`; 
         let jwt = this.getToken();
         jwt = "Bearer " + jwt;
         let httpHeaders = new HttpHeaders({"Authorization": jwt})
@@ -49,7 +49,7 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
     }
 
     namesofuniversity(): Observable<any[]>{
-        let url ='http://localhost:8000/names'; 
+        let url ='http://localhost:8002/names'; 
         return this.http.get<any>(url);}
         logout() {
             this.loggedUser = undefined!;
@@ -64,7 +64,7 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
         }
 
         rechercherParEmail(email: string):Observable< user> {
-            const url = `http://localhost:8000/User/getUser/${email}`;
+            const url = `http://localhost:8002/User/getUser/${email}`;
             let jwt = this.getToken();
             jwt = "Bearer "+jwt;
             let httpHeaders = new HttpHeaders({"Authorization":jwt})
@@ -73,7 +73,7 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
 
             listeUsers(): Observable<user[]>{
                 let jwt = window.sessionStorage.getItem('currentUser');
-                const url ='http://localhost:8000/User/Users';
+                const url ='http://localhost:8002/User/Users';
                 let httpHeaders = new HttpHeaders()
                 .set('Authorization', 'Bearer ' + jwt);
                 return this.http.get<user[]>(url,{headers:httpHeaders});
@@ -82,7 +82,7 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
 
                   listeNotification(): Observable<any[]>{
                     let jwt = window.sessionStorage.getItem('currentUser');
-                    const url ='http://localhost:8000/notification';
+                    const url ='http://localhost:8002/notification';
                     let httpHeaders = new HttpHeaders()
                     .set('Authorization', 'Bearer ' + jwt);
                     return this.http.get<any[]>(url,{headers:httpHeaders});
@@ -90,7 +90,7 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
                       }
                       nombredenotification(): Observable<number>{
                         let jwt = window.sessionStorage.getItem('currentUser');
-                        const url ='http://localhost:8000/notificationcount';
+                        const url ='http://localhost:8002/notificationcount';
                         let httpHeaders = new HttpHeaders()
                         .set('Authorization', 'Bearer ' + jwt);
                         return this.http.get<number>(url,{headers:httpHeaders});
@@ -98,7 +98,7 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
                           }
                           Ajoutetudiant(user:user,idet:number,iduniver:number): Observable<any>{
                             let jwt = window.sessionStorage.getItem('currentUser');
-                            const url =`http://localhost:8000/User/addUser/${idet}/${iduniver}`;
+                            const url =`http://localhost:8002/User/addUser/${idet}/${iduniver}`;
                             let httpHeaders = new HttpHeaders()
                             .set('Authorization', 'Bearer ' + jwt);
                             return this.http.post<any>(url,user,{headers:httpHeaders});
@@ -106,7 +106,7 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
                               }
                               giveaccess(iduser:number,iduniver:number): Observable<any>{
                                 let jwt = window.sessionStorage.getItem('currentUser');
-                                const url =`http://localhost:8000/User/giveaccess/${iduniver}/${iduser}`;
+                                const url =`http://localhost:8002/User/giveaccess/${iduniver}/${iduser}`;
                                 let httpHeaders = new HttpHeaders()
                                 .set('Authorization', 'Bearer ' + jwt);
                                 return this.http.post<any>(url,null,{headers:httpHeaders});
@@ -114,21 +114,21 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
                                   }
 
                                   Changestatus(u: String) {
-                                    const url = `http://localhost:8000/User/changeStatus/${u}`;
+                                    const url = `http://localhost:8002/User/changeStatus/${u}`;
                                     let jwt = window.sessionStorage.getItem('currentUser');
                                     let httpHeaders = new HttpHeaders()
                                     .set('Authorization', 'Bearer ' + jwt);
                                     return this.http.put(url,null,{ headers:httpHeaders });
                                   }
                                   edituser(user: user): Observable<any>{
-                                    const url = `http://localhost:8000/User/userUpdate`;
+                                    const url = `http://localhost:8002/User/userUpdate`;
                                     let jwt = window.sessionStorage.getItem('currentUser');
                                     jwt = "Bearer " + jwt;
                                     let httpHeaders = new HttpHeaders({"Authorization": jwt})
                                     return this.http.put(url,user,{ headers:httpHeaders });
                                   }
                                   Deleteuser(id: number): Observable<any>{
-                                    const url = `http://localhost:8000/User/deleteUser/${id}`;
+                                    const url = `http://localhost:8002/User/deleteUser/${id}`;
                                     let jwt = window.sessionStorage.getItem('currentUser');
                                     jwt = "Bearer " + jwt;
                                     let httpHeaders = new HttpHeaders({"Authorization": jwt})
